@@ -1,1 +1,8 @@
-<%= @player1 %>  Lets play Rock, Paper, Scissors!
+<%= @player1 %>  and <%= @player2 %> Lets play Rock, Paper, Scissors!
+
+
+<form action="/option" method="post">
+  <input id="rock" type="submit" name="option" value="Rock">
+  <input id="paper" type="submit" name="option" value="Paper">
+  <input id="scissors" type="submit" name="option" value="Scissors">
+</form>
