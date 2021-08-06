@@ -1,4 +1,8 @@
 class Game
+
+
+
+
   if (player1 == "rock" && player2 == "rock") || (player1 == "paper" && player2 == "paper")
     puts "It's a draw"
   elsif (player1 == "scissors" && player2 == "scissors")
@@ -12,4 +16,5 @@ class Game
   elsif (player1 == "scissors" && player2 == "rock")
     puts "Player 2 wins"
   end
+  
 end
