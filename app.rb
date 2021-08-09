@@ -1,37 +1,43 @@
-require 'sinatra/base'
-require 'sinatra/reloader' 
+require "sinatra/base"
+require "sinatra/reloader"
+require "game"
+require "player"
+require "computer"
 
 class RockPaperScissors < Sinatra::Base
   enable :sessions
   configure :development do
-  register Sinatra::Reloader
+    register Sinatra::Reloader
   end
 
-  get '/test' do
-    'test page'
+  get "/test" do
+    "test page"
   end
 
-  get '/' do
+  get "/" do
     erb :index
   end
 
   post "/username" do
-    session[:player1] = params[:player1]
-    redirect '/play'
+    player = Player.new(params[:player])
+    computer = Computer.new
+    @game = Game.create(player, computer)
+    redirect "/play"
   end
 
   get "/play" do
-    @player1 = session[:player1]
+    @player = session[:player]
     erb :play
   end
   # come back to this and wrote a proper note, gennuinely forgot what this is
-  post "/option" do 
+  post "/option" do
     session[:option] = params[:option]
-    redirect '/results'
-  end 
+    redirect "/results"
+  end
 
-  get '/results' do 
-    @player1 = session[:player1]
+  get "/results" do
+    @player_choice = @game.player.move(session[:choice])
+    @computer_choice = @game.computer.choice
     erb :results
   end
 

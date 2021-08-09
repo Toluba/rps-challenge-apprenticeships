@@ -1,20 +1,30 @@
+require "computer"
+require "player"
+
 class Game
+  CHOICES = ["Rock", "Paper", "Scissors"]
+  attr_reader :player, :computer, :player_choice, :computer_choice
 
-
-
-
-  if (player1 == "rock" && player2 == "rock") || (player1 == "paper" && player2 == "paper")
-    puts "It's a draw"
-  elsif (player1 == "scissors" && player2 == "scissors")
-    puts "It's a draw"
-  elsif (player1 == "paper" && player2 == "rock") || (player1 == "rock" && player2 == "scissors")
-    puts "Player 1 wins"
-  elsif (player1 == "scissors" && player2 == "paper")
-    puts "Player 1 wins"
-  elsif (player1 == "paper" && player2 == "scissors") || (player1 == "rock" && player2 == "paper")
-    puts "Player 2 wins"
-  elsif (player1 == "scissors" && player2 == "rock")
-    puts "Player 2 wins"
+  def initialize(player, computer)
+    @player = player
+    @computer = computer
   end
-  
+
+  def create(player, computer)
+    @game = Game.new(player, opponent)
+  end
+
+  def winner
+    if @player.choice == @computer.computer_choice
+      "It's a draw"
+    elsif (@player.choice == "paper" && @computer.computer_choice == "rock") || (@player.choice == "rock" && @computer.computer_choice == "scissors")
+      puts "'#{@player.name}' wins"
+    elsif (@player.choice == "scissors" && @computer.computer_choice == "paper")
+      puts "'#{@player.name}' wins"
+    elsif (@player.choice == "paper" && @computer.computer_choice == "scissors") || (@player.choice == "rock" && @computer.computer_choice == "paper")
+      puts "Computer wins"
+    elsif (@player.choice == "scissors" && @computer.computer_choice == "rock")
+      puts "Computer wins"
+    end
+  end
 end
