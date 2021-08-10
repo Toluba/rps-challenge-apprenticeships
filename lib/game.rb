@@ -1,5 +1,5 @@
-require "computer"
-require "player"
+require_relative 'computer'
+require_relative 'player'
 
 class Game
   CHOICES = ["Rock", "Paper", "Scissors"]
@@ -10,8 +10,12 @@ class Game
     @computer = computer
   end
 
-  def create(player, computer)
-    @game = Game.new(player, opponent)
+  def self.create(player, computer)
+    @game = Game.new(player, computer)
+  end
+
+  def self.instance
+    @game
   end
 
   def winner

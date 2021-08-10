@@ -1,13 +1,17 @@
 require "sinatra/base"
 require "sinatra/reloader"
-require "game"
-require "player"
-require "computer"
+require "./lib/player"
+require './lib/computer'
+require "./lib/game.rb"
 
 class RockPaperScissors < Sinatra::Base
   enable :sessions
   configure :development do
     register Sinatra::Reloader
+  end
+
+  before do
+    @game = Game.instance
   end
 
   get "/test" do
